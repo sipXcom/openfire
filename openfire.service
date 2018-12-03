@@ -1,0 +1,15 @@
+[Unit]
+Description=Openfire is an XMPP server, which is a server that facilitates XML based communication, such as chat.
+Documentation=https://www.igniterealtime.org/projects/openfire/
+After=network.target syslog.target
+
+[Service]
+Type=oneshot
+Restart=no
+RemainAfterExit=yes
+ExecStart=/etc/rc.d/init.d/openfire start
+ExecStop=/etc/rc.d/init.d/openfire stop
+ExecReload=/etc/rc.d/init.d/openfire reload
+
+[Install]
+WantedBy=multi-user.target

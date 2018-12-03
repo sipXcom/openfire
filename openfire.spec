@@ -51,6 +51,9 @@ chmod 755 $RPM_BUILD_ROOT%{homedir}/bin/openfire.sh
 # Set up the sysconfig file.
 mkdir -p $RPM_BUILD_ROOT/etc/sysconfig
 cp $RPM_BUILD_ROOT%{homedir}/bin/extra/redhat/openfire-sysconfig $RPM_BUILD_ROOT/etc/sysconfig/openfire
+# Set up the openfire.service file.
+mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
+cp openfire.service $RPM_BUILD_ROOT/usr/lib/systemd/system/
 # Copy over the documentation
 cp -R documentation $RPM_BUILD_ROOT%{homedir}/documentation
 # Copy over the i18n files
@@ -115,6 +118,7 @@ rm -rf $RPM_BUILD_ROOT || true
 %doc %{homedir}/documentation
 %{_sysconfdir}/init.d/openfire
 %config(noreplace) %{_sysconfdir}/sysconfig/openfire
+%attr(644,root,root) /usr/lib/systemd/system/*
 
 %changelog
 * %{OPENFIRE_BUILDDATE} Jive Software <webmaster@jivesoftware.com> %{OPENFIRE_VERSION}-1
